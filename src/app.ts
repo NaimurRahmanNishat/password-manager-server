@@ -1,4 +1,4 @@
-import express, { Application } from 'express';
+import express, { Application, Request, Response } from 'express';
 import bodyParser from 'body-parser';
 const app: Application = express();
 import cors from "cors";
@@ -37,6 +37,9 @@ async function bootstrap() {
     }
     await mongoose.connect(dbUrl);
     console.log("✅ MongoDB Connected!");
+
+    app.get("/", (req:Request, res:Response) => {res.send("Hello World!")});
+
     app.listen(port, () => {
       console.log(`🚀 Server running on http://localhost:${port}`);
     });
@@ -46,3 +49,5 @@ async function bootstrap() {
 }
 
 bootstrap();
+
+
